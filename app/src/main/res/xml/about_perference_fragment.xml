@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="纸飞机">
+        <Preference
+            android:key="version"
+            android:title="本版：V1.0" />
+        <Preference
+            android:key="suggest"
+            android:summary="关于本App你有什么意见和建议，请与作者联系。"
+            android:title="建议和意见">
+
+        </Preference>
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="作者">
+        <Preference
+            android:key="author"
+            android:summary="一个沙雕"
+            android:title="yyg" />
+        <Preference
+            android:key="gitHub"
+            android:summary="没有账号，哈哈哈....."
+            android:title="在GitHub上关注我" />
+        <Preference
+            android:key="weChat"
+            android:summary="yygg985211"
+            android:title="是妹子就加个微信">
+
+        </Preference>
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="支持">
+        <Preference
+            android:key="support"
+            android:summary="支付账号：xxxxx"
+            android:title="请我吃饭" />
+        <Preference
+            android:key="source"
+            android:title="开源许可" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
