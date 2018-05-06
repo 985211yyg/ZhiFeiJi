@@ -2,6 +2,9 @@ package com.example.yungui.zhifeiji.homepage;
 
 import com.example.yungui.zhifeiji.BasePresenter;
 import com.example.yungui.zhifeiji.BaseView;
+import com.example.yungui.zhifeiji.bean.douban.DouBanMomentNews;
+
+import java.util.ArrayList;
 
 /**
  * Created by yungui on 2017/2/14.
@@ -20,7 +23,9 @@ public interface DouBanMomentContract {
         void stopLoading();
 
         //成功获取数据之后再界面中显示
-        void showResult();
+        void showResult(ArrayList<DouBanMomentNews.PostsBean> list);
+       //x显示时间选择界面
+        void showDialog();
     }
 
     interface Presenter extends BasePresenter {

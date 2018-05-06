@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="day_colorPrimary" format="color|reference" />
+    <attr name="day_coloDarkPrimaryDark" format="color|reference" />
+    <attr name="day_textColor" format="color|reference" />
+    <attr name="day_bgColor" format="color|reference" />
+    <attr name="light_colorPrimaryDark" format="color|reference" />
+    <attr name="light_colorPrimary" format="color|reference" />
+    <attr name="light_textColor" format="color|reference" />
+    <attr name="light_bgColor" format="color|reference" />
+
+</resources>

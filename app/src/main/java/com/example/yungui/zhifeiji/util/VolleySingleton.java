@@ -23,6 +23,7 @@ public class VolleySingleton {
 
     //单例
     public static synchronized VolleySingleton getVolleySingleton(Context context) {
+
         if (volleySingleton == null) {
             volleySingleton = new VolleySingleton(context);
 

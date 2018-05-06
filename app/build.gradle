@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.example.yungui.zhifeiji"
         minSdkVersion 21
@@ -17,8 +17,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
 
+}
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -36,7 +41,7 @@ dependencies {
     //使用volly惊进行网络请求
     //图片加载库
     //数据库工具realm
-
+    //添加custom Tab的支持库
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.android.support:recyclerview-v7:25.1.1'
@@ -50,5 +55,7 @@ dependencies {
     compile 'com.android.support.test.espresso:espresso-core:2.2.2'
     compile 'com.android.support:support-v4:25.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     testCompile 'junit:junit:4.12'
+    //    compile (name:'mpointindicator-debug',ext:'aar')
 }

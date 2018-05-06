@@ -11,11 +11,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.yungui.zhifeiji.R;
-import com.example.yungui.zhifeiji.bean.ZhuHuDailyNews;
-import com.example.yungui.zhifeiji.interfaze.onRecycleViewOnClickListener;
+import com.example.yungui.zhifeiji.bean.zhihu.ZhiHuDailyNews;
+import com.example.yungui.zhifeiji.interfaze.onRecycleViewItemClickListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by yungui on 2017/2/14.
@@ -23,8 +22,8 @@ import java.util.List;
 
 public class ZhuHuDailyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
-    private ArrayList<ZhuHuDailyNews.Question> questionList = new ArrayList<>();
-    private onRecycleViewOnClickListener itemClickListener;
+    private ArrayList<ZhiHuDailyNews.Question> questionList = new ArrayList<>();
+    private onRecycleViewItemClickListener itemClickListener;
     private LayoutInflater inflater;
 
     //布局类型
@@ -33,7 +32,7 @@ public class ZhuHuDailyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     //footer,加载更多
     private static final int TYPE_FOOTER = 1;
 
-    public ZhuHuDailyAdapter(Context context, ArrayList<ZhuHuDailyNews.Question> questionList) {
+    public ZhuHuDailyAdapter(Context context, ArrayList<ZhiHuDailyNews.Question> questionList) {
         this.mContext = context;
         this.questionList = questionList;
         this.inflater = LayoutInflater.from(context);
@@ -41,6 +40,7 @@ public class ZhuHuDailyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         //更具viewtype的类型加载不同的布局
         switch (viewType) {
             case TYPE_NORMAL:
@@ -71,7 +71,7 @@ public class ZhuHuDailyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         //如果是普通的item项
         if (holder instanceof ZhuHuDailyAdapter.normalViewHolder) {
-            ZhuHuDailyNews.Question item = questionList.get(position);
+            ZhiHuDailyNews.Question item = questionList.get(position);
             //如果第一张图片为空，则设置默认的图片
             if (item.getImages().get(0) == null) {
                 ((normalViewHolder) holder).imageView.setImageResource(R.drawable.ic_blank_image);
@@ -110,16 +110,16 @@ public class ZhuHuDailyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     由于recycleAdapter没有提供默认的点击监听器所以自己设置
 
      */
-    public void setItemClickListener(onRecycleViewOnClickListener itemClickListener) {
+    public void setItemClickListener(onRecycleViewItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
     private class normalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView imageView;
         private TextView textView;
-        private onRecycleViewOnClickListener listener;
+        private onRecycleViewItemClickListener listener;
 
-        public normalViewHolder(View itemView, onRecycleViewOnClickListener listener) {
+        public normalViewHolder(View itemView, onRecycleViewItemClickListener listener) {
 
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.item_iv);

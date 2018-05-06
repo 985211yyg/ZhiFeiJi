@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Customize_BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="my_day_theme" parent="Customize_BaseTheme">
+        <item name="day_colorPrimary">@color/day_colorPrimary</item>
+        <item name="day_coloDarkPrimaryDark">@color/day_colorPrimaryDark</item>
+        <item name="day_textColor">@color/day_textColor</item>m
+        <item name="day_bgColor">@color/day_bgColor</item>
+
+
+    </style>
+
+    <style name="my_light_theme" parent="Customize_BaseTheme">
+        <item name="light_colorPrimaryDark">@color/light_colorPrimaryDark</item>
+        <item name="light_colorPrimary">@color/light_colorPrimary</item>
+        <item name="light_textColor">@color/light_textColor</item>
+        <item name="light_bgColor">@color/light_bgColor</item>
+    </style>
+
+
+    <style name="Day_CollapsingToolbar_Expanded" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/mdtp_white</item>
+
+        <item name="android:textSize">24sp</item>
+
+    </style>
+
+    <style name="Day_CollapsingToolbar_Collapsed" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/mdtp_white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Light_CollapsingToolbar_Expanded" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/light_textColor</item>
+
+        <item name="android:textSize">24sp</item>
+
+    </style>
+
+    <style name="Light_CollapsingToolbar_Collapsed" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/light_textColor</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+</resources>

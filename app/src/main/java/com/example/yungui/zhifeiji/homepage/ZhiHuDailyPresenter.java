@@ -3,14 +3,14 @@ package com.example.yungui.zhifeiji.homepage;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
 import com.android.volley.VolleyError;
 import com.example.yungui.zhifeiji.bean.BeanType;
-import com.example.yungui.zhifeiji.bean.ZhuHuDailyNews;
+import com.example.yungui.zhifeiji.bean.zhihu.ZhiHuDailyNews;
 import com.example.yungui.zhifeiji.db.DataBaseHelper;
 import com.example.yungui.zhifeiji.detail.DetailActivity;
 import com.example.yungui.zhifeiji.interfaze.onStringListener;
@@ -27,8 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
+import java.util.Random;
 
 /**
  * Created by yungui on 2017/2/9.
@@ -42,13 +41,17 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
     private DateFormatter fromatter;
     private Gson gson;
     //数据
-    private ArrayList<ZhuHuDailyNews.Question> list = new ArrayList<>();
+    private ArrayList<ZhiHuDailyNews.Question> list = new ArrayList<>();
 
-    private final static String ZHIHUIDAILY_BRODCAST = "com.example.yungui.zhihudaily.LOACL_BRODCAST";
+    public final static String ZHIFEIJI_BRODCAST = "com.example.yungui.zhifeiji.LOACL_BRODCAST";
 
     private DataBaseHelper db;
     //克读写的数据库
     private SQLiteDatabase sqLiteDatabase;
+
+
+    //读取应用设置
+    private SharedPreferences preferences;
 
     public ZhiHuDailyPresenter(Context context, ZhiHuDailyContract.View view) {
         this.mContext = context;
@@ -57,14 +60,13 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
         fromatter = new DateFormatter();
         gson = new Gson();
         //创建数据库和数据表
-        db = new DataBaseHelper(context, "History.db", null, 5);
+        db = DataBaseHelper.getInstance(context, "History.db", null, 5);
         sqLiteDatabase = db.getWritableDatabase();
         view.setPresenter(this);
 
     }
 
-    //    ZhuHuDailyNews{data
-//                     ;Stories}
+
     @Override
     public void loadPost(long date, final boolean clearing) {
         //首先是否加载新的数据，显示加载
@@ -73,13 +75,11 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
         }
         //判断网络是否连接,连通证常则获取数据
         if (NetWorkState.NetWorkConnected(mContext)) {
-            Log.i(TAG, "--------->>>>>>>>>>>NetWorkConnected:"+true);
 
             //获取数据
             model.load(Api.ZHIHU_HISTORY + fromatter.ZhiHuDailyFormat(date), new onStringListener() {
                 @Override
                 public void onError(VolleyError error) {
-                    Log.i(TAG, ">>>>>>onError: " + error);
                     //回调
                     view.showError();
                     view.stopLoading();
@@ -90,18 +90,15 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
                     //返回的result数据是json格式的
                     try {
                         //News理封装有 data和Question
-                        Log.i(TAG, ">>>>>>>>>onSuccess: " + result);
-
-                        ZhuHuDailyNews news = gson.fromJson(result, ZhuHuDailyNews.class);
+                        ZhiHuDailyNews news = gson.fromJson(result, ZhiHuDailyNews.class);
                         //要存储的键值对数据
                         ContentValues values = new ContentValues();
                         //是否应景清除数据
                         if (clearing) {
                             list.clear();
                         }
-                        for (ZhuHuDailyNews.Question item : news.getStories()) {
+                        for (ZhiHuDailyNews.Question item : news.getStories()) {
 
-                            Log.i(TAG, ">>>>>>>>>newsItem: " + item.toString());
                             list.add(item);
                             //,存储数据，首先判断ID是否应已经存在
                             if (!queryifIDExists(item.getId())) {
@@ -112,6 +109,8 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
                                 //保存ID，news，发布时间，具体内容
                                 values.put("zhihu_id", item.getId());
                                 values.put("zhihu_news", gson.toJson(item));
+
+                                //content使用service来缓存，因为内容比较多，即可存储可能造成线程拥堵
                                 values.put("zhihu_content", "");
                                 values.put("zhihu_time", date.getTime() / 1000);
                                 //向数据库表中插入内容
@@ -124,10 +123,9 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
                             }
 
                             //使用service缓存zhihu_content.发送广播通知服务开始缓存
-                            Intent intent = new Intent(ZHIHUIDAILY_BRODCAST);
+                            Intent intent = new Intent(ZHIFEIJI_BRODCAST);
                             intent.putExtra("type", CacheService.ZHIHU);
                             intent.putExtra("id", item.getId());
-                            Log.i(TAG, "------>>>>>>itemID:"+item.getId());
                             LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
                         }
                         //回调
@@ -144,11 +142,10 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
         } else {
             if (clearing) {
                 //若果没有网络在从数据库中获数据
-                Log.i(TAG, "--------->>>>>>>>>>>NetWorkConnected:"+false);
                 Cursor cursor = sqLiteDatabase.query("ZhiHu", null, null, null, null, null, null);
                 if (cursor.moveToFirst()) {
                     do {
-                        ZhuHuDailyNews.Question question = gson.fromJson(cursor.getString(cursor.getColumnIndex("zhihu_news")), ZhuHuDailyNews.Question.class);
+                        ZhiHuDailyNews.Question question = gson.fromJson(cursor.getString(cursor.getColumnIndex("zhihu_news")), ZhiHuDailyNews.Question.class);
                         list.add(question);
                     } while (cursor.moveToNext());
 
@@ -186,18 +183,24 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
 
     @Override
     public void refresh() {
+        //更新数据，将原来的数据清除，显示最新数据
+        loadPost(Calendar.getInstance().getTimeInMillis(), true);
+
 
     }
 
     @Override
     public void loadMore(long date) {
+        //不清楚数据
+        loadPost(date, false);
+
 
     }
 
     @Override
     public void readDetail(int position) {
         Intent intent = new Intent(mContext, DetailActivity.class);
-        intent.putExtra("id",list.get(position).getId() );
+        intent.putExtra("id", list.get(position).getId());
         intent.putExtra("title", list.get(position).getTitle());
         intent.putExtra("coverUrl", list.get(position).getImages().get(0));
         intent.putExtra("beanType", BeanType.TYPE_ZHIHU);
@@ -207,6 +210,18 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
 
     @Override
     public void lookLook() {
+        /*
+        从数据集合list中随机选取一个
+         */
+
+        if (list.isEmpty()) {
+
+            view.showError();
+            return;
+        }
+
+        readDetail(new Random().nextInt(list.size()));
+
 
     }
 

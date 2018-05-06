@@ -8,9 +8,13 @@ import java.util.Date;
  */
 
 public class DateFormatter {
+
+    public DateFormatter() {
+    }
+
     /*
-    将long类型的date转换为string类型
-     */
+        将long类型的date转换为string类型
+         */
     public String ZhiHuDailyFormat(long date) {
         String Fdate;
         Date d = new Date(date + 24 * 60 * 60 * 1000);
@@ -21,9 +25,9 @@ public class DateFormatter {
 
     public String DouBanFormat(long date) {
         String Fdate;
-        Date d = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-d");
-        Fdate= dateFormat.format(d);
+        Date d = new Date(date);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Fdate = dateFormat.format(d);
         return Fdate;
     }
 }

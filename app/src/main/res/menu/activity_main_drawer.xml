@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
         <item
@@ -11,6 +12,7 @@
             android:icon="@drawable/ic_menu_collection"
             android:title="收藏" />
     </group>
+
 
     <item
         android:id="@+id/nav_theme"
@@ -24,6 +26,5 @@
         android:id="@+id/nav_about"
         android:icon="@drawable/ic_menu_about"
         android:title="关于" />
-
 
 </menu>

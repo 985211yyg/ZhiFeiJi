@@ -6,6 +6,6 @@ import android.view.View;
  * Created by yungui on 2017/2/15.
  */
 
-public interface onRecycleViewOnClickListener {
+public interface onRecycleViewItemClickListener {
     void OnItemClickListener(int position, View view);
 }

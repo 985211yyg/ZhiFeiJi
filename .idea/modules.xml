@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ZhiFeiJi.iml" filepath="$PROJECT_DIR$/ZhiFeiJi.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library-debug/library-debug.iml" filepath="$PROJECT_DIR$/library-debug/library-debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mpointindicator-debug/mpointindicator-debug.iml" filepath="$PROJECT_DIR$/mpointindicator-debug/mpointindicator-debug.iml" />
     </modules>
   </component>
 </project>

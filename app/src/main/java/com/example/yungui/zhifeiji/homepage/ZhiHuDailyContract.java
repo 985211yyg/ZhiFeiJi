@@ -1,9 +1,8 @@
 package com.example.yungui.zhifeiji.homepage;
 
-import com.android.volley.VolleyError;
 import com.example.yungui.zhifeiji.BasePresenter;
 import com.example.yungui.zhifeiji.BaseView;
-import com.example.yungui.zhifeiji.bean.ZhuHuDailyNews;
+import com.example.yungui.zhifeiji.bean.zhihu.ZhiHuDailyNews;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ public interface ZhiHuDailyContract {
         void stopLoading();
 
         //成功获取数据之后再界面中显示
-        void showResult(ArrayList<ZhuHuDailyNews.Question> item);
+        void showResult(ArrayList<ZhiHuDailyNews.Question> item);
 
         //挑选日期时加载日期选择对话框
         void pickDialog();

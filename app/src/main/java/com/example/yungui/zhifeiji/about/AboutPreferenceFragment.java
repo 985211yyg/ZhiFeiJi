@@ -28,7 +28,7 @@ public class AboutPreferenceFragment extends PreferenceFragment implements About
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //加载XML布局
+        //加载XML设置布局
         addPreferencesFromResource(R.xml.about_perference_fragment);
         //获取layout布局
         initViews(getView());

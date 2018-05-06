@@ -1,4 +1,4 @@
-package com.example.yungui.zhifeiji.bean;
+package com.example.yungui.zhifeiji.bean.zhihu;
 
 import java.util.ArrayList;
 

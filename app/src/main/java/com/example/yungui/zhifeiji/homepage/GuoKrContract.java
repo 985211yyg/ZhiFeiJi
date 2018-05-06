@@ -2,6 +2,9 @@ package com.example.yungui.zhifeiji.homepage;
 
 import com.example.yungui.zhifeiji.BasePresenter;
 import com.example.yungui.zhifeiji.BaseView;
+import com.example.yungui.zhifeiji.bean.guokr.GuoKrStory;
+
+import java.util.ArrayList;
 
 /**
  * Created by yungui on 2017/2/14.
@@ -21,20 +24,20 @@ public interface GuoKrContract {
         void stopLoading();
 
         //成功获取数据之后再界面中显示
-        void showResult();
+        void showResult(ArrayList<GuoKrStory.ResultBean> resultBeanArrayList);
 
 
     }
     //逻辑相关的操作接口
     interface Presenter extends BasePresenter {
         //请求数据
-        void loadPost(long date, boolean clearing);
+        void loadPost(int counts);
 
         //刷新数据
         void refresh();
 
         //加载更多
-        void loadMore(long date);
+        void loadMore(int counts);
 
         //进入详情
         void readDetail(int id);

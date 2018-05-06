@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory android:title="基本设置">
 
         <CheckBoxPreference
@@ -11,14 +12,14 @@
 
         </CheckBoxPreference>
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="inner_browser"
-            android:summary="在页面内浏览连接"
+            android:summary="在页面内浏览网页链接(需要安装Google Chrome)"
             android:title="使用内置浏览器">
 
         </CheckBoxPreference>
         <ListPreference
-            android:defaultValue="7"
+            android:defaultValue="3day"
             android:entries="@array/default_store_day"
             android:entryValues="@array/default_store_day_value"
             android:key="store_article"

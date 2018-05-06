@@ -4,24 +4,33 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".homepage.MainActivity"
-            android:label="纸飞机"
+            android:name=".homepage.LaunchActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <!--主activity-->
+        <activity
+            android:name=".homepage.MainActivity"
+            android:label="纸飞机"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".search.SearchActivity" />
         </activity>
 
         <service
@@ -29,20 +38,13 @@
             android:enabled="true"
             android:exported="true" />
 
-        <receiver
-            android:name=".service.MyReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.example.yungui.zhihudaily.LOACL_BRODCAST" />
-            </intent-filter>
-        </receiver>
-
         <activity
             android:name=".detail.DetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".about.AboutPreferenceActivity"
+            android:enabled="true"
+            android:exported="true"
             android:label="@string/about_label"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -56,6 +58,31 @@
             android:label="license" />
         <activity
             android:name=".innerbrowser.InnerBrowserActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".search.SearchActivity"
+            android:label="搜索结果如下："
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".search.MySearchActivity"
+            android:label="@string/title_activity_my_search"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".imagehandle.ShowActivity"
+            android:label="@string/title_activity_show"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".imagehandle.ShowImageActivity"
+            android:label="@string/title_activity_show_image"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

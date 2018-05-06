@@ -1,4 +1,4 @@
-package com.example.yungui.zhifeiji.bean;
+package com.example.yungui.zhifeiji.bean.zhihu;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 }
  */
 
-public class ZhuHuDailyNews{
+public class ZhiHuDailyNews {
     private String date;
     private ArrayList<Question> stories;
 
@@ -46,9 +46,7 @@ public class ZhuHuDailyNews{
 
     public class Question {
         private ArrayList<String> images;
-
         private int type;
-
         private int id;
         private int ga_prefix;
         private String title;

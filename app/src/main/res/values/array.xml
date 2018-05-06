@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="default_store_day">
-        <item>3 day</item>
-        <item>7 days</item>
-        <item>10 days</item>
-        <item>15 days</item>
+        <item>3day</item>
+        <item>7days</item>
+        <item>10days</item>
+        <item>15days</item>
     </string-array>
+
     <string-array name="default_store_day_value">
         <item>3</item>
         <item>7</item>

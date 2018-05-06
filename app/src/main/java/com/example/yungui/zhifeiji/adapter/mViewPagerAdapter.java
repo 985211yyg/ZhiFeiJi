@@ -16,13 +16,24 @@ import com.example.yungui.zhifeiji.homepage.ZhuHuDailyFragment;
 
 public class mViewPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] titles = new String[]{"知乎日报", "果壳精选", "豆瓣精选"};
+    private String[] titles = new String[]{"知乎日报", "果壳精选", "豆瓣时刻"};
     private Context context;
 
     private ZhuHuDailyFragment zhuHuDailyFragment;
     private GuoKrFragment guoKrFragment;
     private DouBanMomentFragment douBanMomentFragment;
 
+    public ZhuHuDailyFragment getZhuHuDailyFragment() {
+        return zhuHuDailyFragment;
+    }
+
+    public GuoKrFragment getGuoKrFragment() {
+        return guoKrFragment;
+    }
+
+    public DouBanMomentFragment getDouBanMomentFragment() {
+        return douBanMomentFragment;
+    }
 
     public mViewPagerAdapter(FragmentManager fm, Context context,
                              ZhuHuDailyFragment zhuHuDailyFragment,

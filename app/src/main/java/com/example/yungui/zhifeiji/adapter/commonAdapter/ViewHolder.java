@@ -1,17 +1,11 @@
 package com.example.yungui.zhifeiji.adapter.commonAdapter;
 
 import android.content.Context;
-import android.support.test.espresso.core.deps.guava.io.CharStreams;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.yungui.zhifeiji.R;
-import com.example.yungui.zhifeiji.homepage.DouBanMomentContract;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 /**
  * Created by yungui on 2017/2/14.
@@ -22,6 +16,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     public ViewHolder(View itemView) {
         super(itemView);
+        mViews = new SparseArray<>();
     }
 
     //通过ID获取view
@@ -31,6 +26,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         //如果没有则通过findViewById
         if (view == null) {
             view = itemView.findViewById(ViewId);
+            mViews.put(ViewId,view);
         }
         //返回view
         return (T) view;

@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
@@ -46,7 +48,7 @@ public class AboutPreferencePresenter implements AboutPreferenceContract.Present
     @Override
     public void openEmail() {
         Uri uri = Uri.parse("mailto:2289201033@qq.com");
-        Intent intent = new Intent(Intent.ACTION_SENDTO,uri);
+        Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
         intent.putExtra(Intent.EXTRA_SUBJECT, "纸飞机使用反馈级建议");
         intent.putExtra(Intent.EXTRA_TEXT, "设备型号：" + Build.MODEL + "\n"
                 + "软件版本：" + Build.VERSION.RELEASE + "\n"
@@ -57,7 +59,10 @@ public class AboutPreferencePresenter implements AboutPreferenceContract.Present
 
     @Override
     public void followGitHub() {
-        activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/")));
+//        activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/")));
+        String url = "https://github.com/";
+        CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder().setToolbarColor(Color.WHITE).build();
+        customTabsIntent.launchUrl(activity, Uri.parse(url));
 
     }
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="day_colorPrimary">#FFFFFFFF</color>
+    <color name="day_colorPrimaryDark">#FFFFFFFF</color>
+    <color name="day_colorAccent">#FFFFFFFF</color>
+    <color name="day_bgColor">#FFFFFFFF</color>
+    <color name="day_textColor">#1b1a1a</color>
+
+</resources>

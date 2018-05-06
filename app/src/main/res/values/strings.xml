@@ -87,4 +87,14 @@
     <string name="setting_toolbar">设置</string>
     <string name="about_label">关于</string>
     <string name="license">license是版权许可证。相当于软件版权。软件版权属于知识产权的著作权范畴，具有知识产权的特征，即时间性，专有性和地域性。软件版权在法律上称为“计算机软件著作权”。属于著作权（知识产权）的一种。国家颁布有《计算机软件保护条例》,保护权益人的软件著作权。</string>
+    <string name="title_activity_web_view">WebViewActivity</string>
+    <string name="search_hint">Search</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_my_search">MySearchActivity</string>
+    <string name="about_toolbar">关于</string>
+    <string name="title_activity_show">查看图片</string>
+    <string name="title_activity_show_image">查看图片</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="action_save">保存</string>
+    <string name="luanch_text">我是引导页！！</string>
 </resources>

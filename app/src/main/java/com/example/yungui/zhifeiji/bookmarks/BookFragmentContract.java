@@ -2,6 +2,11 @@ package com.example.yungui.zhifeiji.bookmarks;
 
 import com.example.yungui.zhifeiji.BasePresenter;
 import com.example.yungui.zhifeiji.BaseView;
+import com.example.yungui.zhifeiji.bean.douban.DouBanMomentNews;
+import com.example.yungui.zhifeiji.bean.guokr.GuoKrStory;
+import com.example.yungui.zhifeiji.bean.zhihu.ZhiHuDailyNews;
+
+import java.util.ArrayList;
 
 /**
  * Created by yungui on 2017/2/13.
@@ -20,13 +25,15 @@ public interface BookFragmentContract {
         void stopLoading();
 
         //成功获取数据之后再界面中显示
-        void showResult();
+        void showResult(ArrayList<ZhiHuDailyNews.Question> zhihuList
+                ,ArrayList<GuoKrStory.ResultBean> guokrList
+                ,ArrayList<DouBanMomentNews.PostsBean> doubanList
+                ,ArrayList<Integer> itemType);
 
-        //挑选日期时加载日期选择对话框
-        void pickDialog();
-
-        //跟新数据
-        void notifyDataChange();
+        void showSearchResult(ArrayList<ZhiHuDailyNews.Question> zhihuList
+                ,ArrayList<GuoKrStory.ResultBean> guokrList
+                ,ArrayList<DouBanMomentNews.PostsBean> doubanList
+                ,ArrayList<Integer> itemType);
 
 
     }
@@ -35,18 +42,18 @@ public interface BookFragmentContract {
     interface Presenter extends BasePresenter {
 
         //请求数据
-        void loadPost(long date, boolean clearing);
+        void loadPost(boolean refresh);
 
         //刷新数据
         void refresh();
 
-        //加载更多
-        void loadMore(long date);
-
-        //进入详情
-        void readDetail(int id);
-
         //随便看看
         void lookLook();
+
+        //展开详情
+        void search(String search,boolean clearing);
+
+        //展开详情
+        void readDetail(int id);
     }
 }

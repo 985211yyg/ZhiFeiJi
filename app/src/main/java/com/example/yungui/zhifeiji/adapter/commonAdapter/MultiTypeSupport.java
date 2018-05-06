@@ -8,6 +8,6 @@ package com.example.yungui.zhifeiji.adapter.commonAdapter;
     */
 public interface MultiTypeSupport<T> {
     //根据当前的位置或者是条目返回对应的布局
-    public int getLayoutId(int position, T item);
+    public int getLayoutId(int position);
 
 }
