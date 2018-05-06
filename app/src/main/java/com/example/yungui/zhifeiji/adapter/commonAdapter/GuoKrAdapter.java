@@ -34,13 +34,11 @@ public class GuoKrAdapter extends commonRecyclerAdapter<GuoKrStory.ResultBean> {
         this.context = context;
         this.data = data;
 
-
     }
 
 
     @Override
     protected void covert(ViewHolder holder,int position) {
-
             holder.setText(R.id.item_tv, data.get(position).getTitle());
             Glide.with(context)
                     .load(data.get(position).getImages().get(0))

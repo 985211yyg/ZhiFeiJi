@@ -37,7 +37,9 @@ public abstract class commonRecyclerAdapter<T> extends RecyclerView.Adapter<View
     /*
     多布局支持
      */
-    public commonRecyclerAdapter(Context context, ArrayList<T> data, MultiTypeSupport<T> multiTypeSupport) {
+    public commonRecyclerAdapter(Context context,
+                                 ArrayList<T> data,
+                                 MultiTypeSupport<T> multiTypeSupport) {
         //调用单布局
         this(context, data, -1);
         this.multiTypeSupport = multiTypeSupport;
